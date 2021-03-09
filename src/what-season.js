@@ -1,12 +1,9 @@
 const isDate = (date) => typeof date.getMonth === 'function';
-const isDate2 = (date) => {
-  const mon = date.getMonth();
-  return Number.isInteger(mon) && mon > 0 && mon <= 12;
-}
 
 const getSeason = (date) => {
   if (date === undefined) return 'Unable to determine the time of year!';
-  if (!isDate(date) && !isDate2(date)) throw new Error('Whoops!');
+  if (!isDate(date)) throw new Error('Whoops!');
+  date.toJSON(); // на случай, если прикидывется датой, но не является ей))
 
   const mon = date.getMonth();
   const helper = [
